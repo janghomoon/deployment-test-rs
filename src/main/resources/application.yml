@@ -1,1 +1,5 @@
-spring.application.name=deployment-test-rs
+spring:
+  application:
+    name: deployment-test-rs
+server:
+  port: 8080
