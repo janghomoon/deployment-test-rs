@@ -1,1 +1,60 @@
 
+name: Spring Boot CI/CD to AWS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build with Gradle
+        run: ./gradlew clean build -x test
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build and push Docker image
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: my-spring-boot-repo
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+
+#      - name: Generate artifacts for CodeDeploy
+#        run: |
+#          zip -r my-app-bundle.zip . -x "*.git*" "*/.idea*" "*/.gradle*"
+#
+#      - name: Upload artifact to S3
+#        run: |
+#          aws s3 cp my-app-bundle.zip s3://your-code-deploy-s3-bucket/my-app-bundle.zip
+#
+#      - name: Create CodeDeploy deployment
+#        run: |
+#          aws deploy create-deployment \
+#            --application-name my-spring-boot-app \
+#            --deployment-group-name MyDeploymentGroup \
+#            --deployment-config-name CodeDeployDefault.AllAtOnce \
+#            --s3-location bucket=your-code-deploy-s3-bucket,key=my-app-bundle.zip,bundleType=zip
