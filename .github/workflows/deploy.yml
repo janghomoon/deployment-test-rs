@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - develop
 
 jobs:
   deploy:
@@ -37,7 +38,7 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: my-spring-boot-repo
+          ECR_REPOSITORY: jhm/ci-cd-test
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
