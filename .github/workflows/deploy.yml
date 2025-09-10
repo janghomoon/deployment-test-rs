@@ -46,7 +46,7 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
 
-    # ec2 설정 완료  test 는 code deploy로  배포 하고  이후에 jenkins로 배포(블루그린 배포 전)
+    # ec2 설정 완료  test 는 code deploy로  배포 하고  이후에 jenkins로 배포(블루그린 배포 전) 오류 수정
       - name: Generate artifacts for CodeDeploy
         run: |
           zip -r my-app-bundle.zip . -x "*.git*" "*/.idea*" "*/.gradle*"
