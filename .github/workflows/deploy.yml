@@ -58,7 +58,7 @@ jobs:
       - name: Create CodeDeploy deployment
         run: |
           aws deploy create-deployment \
-            --application-name my-spring-boot-app \
+            --application-name jhm-test-cd \
             --deployment-group-name MyDeploymentGroup \
             --deployment-config-name CodeDeployDefault.AllAtOnce \
             --s3-location bucket=your-code-deploy-s3-bucket,key=my-app-bundle.zip,bundleType=zip
