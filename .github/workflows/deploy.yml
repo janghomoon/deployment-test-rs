@@ -46,7 +46,7 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
 
-    # ec2 설정 완료  test 는 code deploy로  배포 하고  이후에 jenkins로 배포
+    # ec2 설정 완료  test 는 code deploy로  배포 하고  이후에 jenkins로 배포(블루그린 배포 전)
       - name: Generate artifacts for CodeDeploy
         run: |
           zip -r my-app-bundle.zip . -x "*.git*" "*/.idea*" "*/.gradle*"
@@ -59,6 +59,6 @@ jobs:
         run: |
           aws deploy create-deployment \
             --application-name jhm-test-cd \
-            --deployment-group-name MyDeploymentGroup \
+            --deployment-group-name cd-test-group \
             --deployment-config-name CodeDeployDefault.AllAtOnce \
-            --s3-location bucket=your-code-deploy-s3-bucket,key=my-app-bundle.zip,bundleType=zip
+            --s3-location bucket=cd-jhm-bk-test,key=my-app-bundle.zip,bundleType=zip
