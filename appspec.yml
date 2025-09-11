@@ -7,22 +7,22 @@ files:
     destination: /home/ec2-user/jhm-cd-test
 
 hooks:
-  BeforeInstall:
+  BeforeInstall: # 설치 전 실행될 스크립트
     - location: scripts/stop_old_container.sh
       timeout: 300
       runas: root
 
-  AfterInstall:
+  AfterInstall: # 설치 후 실행될 스크립트
     - location: scripts/start_new_container.sh
       timeout: 300
       runas: root
 
-  ApplicationStart:
+  ApplicationStart: # 애플리케이션 시작 시 실행될 스크립트
     - location: scripts/check_health.sh
       timeout: 60
       runas: root
 
-  ValidateService:
+  ValidateService: # 서비스 검증 스크립트
     - location: scripts/validate_service.sh
       timeout: 30
       runas: root
