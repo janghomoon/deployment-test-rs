@@ -3,7 +3,7 @@
 echo "Pulling latest Docker image and starting a new container..."
 
 # 필요한 변수 설정
-ECR_REGISTRY="217391774843.dkr.ecr.ap-northeast-2.amazonaws.com/jhm/ci-cd-test" # ECR 레지스트리 URL로 변경
+ECR_REGISTRY="217391774843.dkr.ecr.ap-northeast-2.amazonaws.com" # ECR 레지스트리 URL로 변경
 ECR_REPOSITORY="jhm/ci-cd-test"
 IMAGE_NAME="jhm-test-cd"
 
