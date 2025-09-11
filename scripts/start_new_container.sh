@@ -3,9 +3,9 @@
 echo "Pulling latest Docker image and starting a new container..."
 
 # 필요한 변수 설정
-ECR_REGISTRY="[YOUR_ECR_REGISTRY_URL]" # ECR 레지스트리 URL로 변경
-ECR_REPOSITORY="my-spring-boot-repo"
-IMAGE_NAME="my-spring-boot-app"
+ECR_REGISTRY="217391774843.dkr.ecr.ap-northeast-2.amazonaws.com/jhm/ci-cd-test" # ECR 레지스트리 URL로 변경
+ECR_REPOSITORY="jhm/ci-cd-test"
+IMAGE_NAME="jhm-test-cd"
 
 # AWS CLI를 사용하여 ECR에 로그인
 echo "Logging in to Amazon ECR..."
