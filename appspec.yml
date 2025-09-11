@@ -4,7 +4,7 @@ os: linux
 # 배포 파일은 필요 없으므로 빈 리스트로 둡니다.
 files:
   - source: /
-    destination: /home/ec2-user/my-app
+    destination: /home/ec2-user/jhm-cd-test
 
 hooks:
   BeforeInstall:
