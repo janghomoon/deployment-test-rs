@@ -26,4 +26,12 @@
 * ec2 설정
 * github 설정
 * ECR 설정
-* 
+
+
+
+
+----
+배포 자동화 관련 블로그(온프레미스 배포 파이프 라인 구축)
+https://tech-miro.tistory.com/125
+
+
