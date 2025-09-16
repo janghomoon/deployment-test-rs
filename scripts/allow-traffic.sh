@@ -4,11 +4,9 @@
 
 # 환경 변수 설정
 # ---------------------
-# TODO: YOUR_ALB_ARN을 실제 ALB의 ARN으로 변경하세요.
 # ALB_ARN은 AWS 콘솔의 EC2 > 로드 밸런서에서 확인할 수 있습니다.
 ALB_ARN="arn:aws:elasticloadbalancing:ap-northeast-2:217391774843:loadbalancer/app/blue-green-alb/8d1f191865307a4c"
 
-# TODO: green-tg가 아닌 다른 이름을 사용했다면 아래 이름을 변경하세요.
 TARGET_GROUP_NAME="green-target-group"
 
 ALB_LISTENER_ARN=$(aws elbv2 describe-listeners --load-balancer-arn "$ALB_ARN" | jq -r '.Listeners[] | select(.Port == 80) | .ListenerArn')
