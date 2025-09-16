@@ -20,5 +20,6 @@ public class DeploymentController {
     @GetMapping("/health")
     public String ping() {
         return "ok";
+        // ping check
     }
 }
