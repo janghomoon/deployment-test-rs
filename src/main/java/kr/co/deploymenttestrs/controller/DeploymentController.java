@@ -16,4 +16,9 @@ public class DeploymentController {
     public ResponseEntity<String> deploy() {
         return ResponseEntity.ok("Deployment started");
     }
+
+    @GetMapping("/health")
+    public String ping() {
+        return "ok";
+    }
 }
