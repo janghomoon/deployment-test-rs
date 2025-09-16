@@ -58,7 +58,7 @@ jobs:
       - name: Create CodeDeploy deployment
         run: |
           aws deploy create-deployment \
-            --application-name bg-app \
+            --application-name bg-app-test \
             --deployment-group-name blue-greep-gp \
             --deployment-config-name CodeDeployDefault.AllAtOnce \
             --s3-location bucket=cd-jhm-bk-test,key=my-app-bundle.zip,bundleType=zip
